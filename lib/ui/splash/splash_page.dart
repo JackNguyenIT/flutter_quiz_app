@@ -40,12 +40,11 @@ class _SplashViewState extends State<SplashView> {
             context, MAIN_TAB_BAR_PATH, (route) => false);
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          alignment: Alignment.center,
+        body: Image.asset(
+          "assets/images/bg_splash.png",
+          fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-          child: Container(),
         ),
       ),
     );

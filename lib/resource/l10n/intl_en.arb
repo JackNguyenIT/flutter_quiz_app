@@ -2,5 +2,6 @@
   "@@locale": "en",
 
   "error_title": "Error",
-  "loading": "Loading"
+  "loading": "Loading",
+  "skip": "Skip"
 }

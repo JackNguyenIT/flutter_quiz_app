@@ -24,4 +24,10 @@ class QAColors {
   static const imagePlaceHolder = Color(0xFFD9D9D9);
 
   static const contentBlack = Color(0xFF404040);
+
+  static const kPrimaryGradient = LinearGradient(
+    colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
 }
