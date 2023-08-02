@@ -11,7 +11,6 @@ import 'package:quiz_app/ui/bloc/localization/localization_cubit.dart';
 
 void main() {
   runZonedGuarded(() async {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
