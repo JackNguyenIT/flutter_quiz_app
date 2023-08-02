@@ -1,7 +1,10 @@
 {
   "@@locale": "en",
-
   "error_title": "Error",
   "loading": "Loading",
-  "skip": "Skip"
+  "skip": "Skip",
+  "home": "Home",
+  "question": "Question",
+  "history": "History",
+  "profile": "Profile"
 }

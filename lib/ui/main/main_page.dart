@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiz_app/resource/localization/l10n.dart';
+import 'package:quiz_app/resource/theme/colors.dart';
+import 'package:quiz_app/router/route_page.dart';
+import 'package:quiz_app/ui/history/history_page.dart';
+import 'package:quiz_app/ui/home/home_page.dart';
+import 'package:quiz_app/ui/profile/profile_page.dart';
+import 'package:quiz_app/ui/question/question_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,6 +25,17 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  int _selectedIndex = 0;
+
+  final PageController _pageController = PageController();
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePage(),
+    const QuestionPage(),
+    const HistoryPage(),
+    const ProfilePage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -24,31 +43,106 @@ class _MainViewState extends State<MainView> {
           return true;
         },
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-              onPressed: () {}, child: const Icon(Icons.add)),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: BottomAppBar(
-            shape: CircularNotchedRectangle(),
-            child: Container(
-              height: 54.0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.home,
-                      size: 40.0,
-                    ),
-                    Icon(Icons.home, size: 40.0),
-                    Icon(Icons.home, size: 40.0),
-                    Icon(Icons.home, size: 40.0),
-                  ],
-                ),
+            extendBody: true,
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(QUIZ_PATH);
+                },
+                child: const Icon(Icons.play_arrow_rounded)),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            body: Stack(children: [
+              SvgPicture.asset(
+                "assets/images/bg.svg",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
-            ),
+              _buildBody()
+            ]),
+            bottomNavigationBar: _buildBottomAppBar()));
+  }
+
+  _buildBody() {
+    return Column(
+      children: [
+        Expanded(
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: _widgetOptions,
           ),
-        ));
+        )
+      ],
+    );
+  }
+
+  _buildBottomAppBar() {
+    return BottomAppBar(
+      shape: const CircularNotchedRectangle(),
+      color: QAColors.primaryDark,
+      elevation: 8.0,
+      child: SizedBox(
+        height: 60.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildItemBottomAppBar(() {
+              _onItemTapped(0);
+            }, Icons.home, AppTranslations.of(context).home),
+            _buildItemBottomAppBar(() {
+              _onItemTapped(1);
+            }, Icons.question_mark, AppTranslations.of(context).question),
+            const SizedBox(width: 40),
+            _buildItemBottomAppBar(() {
+              _onItemTapped(2);
+            }, Icons.history, AppTranslations.of(context).history),
+            _buildItemBottomAppBar(() {
+              _onItemTapped(3);
+            }, Icons.person, AppTranslations.of(context).profile)
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildItemBottomAppBar(
+      GestureTapCallback? onTap, IconData? icon, String text) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+        child: SizedBox(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24.0,
+                color: QAColors.white,
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              Text(
+                text,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontSize: 14, color: QAColors.white),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _pageController.jumpToPage(index);
+    });
   }
 }

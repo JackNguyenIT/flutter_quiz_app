@@ -19,6 +19,7 @@ class QAColors {
   static const black_80 = Color(0xCC171717);
 
   static const primary = Color(0xFF52B3D0);
+  static const primaryDark = Color(0xCC1E1E1E);
 
   static const line = Color(0xFFEFEEEF);
   static const imagePlaceHolder = Color(0xFFD9D9D9);

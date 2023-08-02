@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/router/route_page.dart';
 import 'package:quiz_app/ui/main/main_page.dart';
+import 'package:quiz_app/ui/quiz/quiz_page.dart';
 import 'package:quiz_app/ui/splash/splash_page.dart';
 
 class AppRouter {
@@ -18,6 +19,11 @@ class AppRouter {
       case MAIN_TAB_BAR_PATH:
         return MaterialPageRoute(
           builder: (_) => const MainPage(),
+          settings: settings,
+        );
+      case QUIZ_PATH:
+        return MaterialPageRoute(
+          builder: (_) => const QuizPage(),
           settings: settings,
         );
       default:
