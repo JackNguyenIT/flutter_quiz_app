@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiz_app/generated/assets.dart';
 import 'package:quiz_app/resource/localization/l10n.dart';
 import 'package:quiz_app/resource/theme/colors.dart';
 import 'package:quiz_app/router/route_page.dart';
@@ -53,7 +54,7 @@ class _MainViewState extends State<MainView> {
                 FloatingActionButtonLocation.centerDocked,
             body: Stack(children: [
               SvgPicture.asset(
-                "assets/images/bg.svg",
+                Assets.imagesBg,
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,

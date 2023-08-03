@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quiz_app/generated/assets.dart';
 import 'package:quiz_app/resource/theme/colors.dart';
 
 class ProgressBar extends StatelessWidget {
@@ -32,7 +33,7 @@ class ProgressBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("${(1 * 60).round()} sec"),
-                    SvgPicture.asset("assets/icons/ic_clock.svg"),
+                    SvgPicture.asset(Assets.iconsIcClock),
                   ],
                 ),
               ),

@@ -6,7 +6,7 @@ abstract class UserDao {
   @Query('SELECT * FROM User LIMIT 1')
   Future<User?> getUser();
 
-  @Query('SELECT * FROM User WHERE id = :id')
+  @Query('SELECT * FROM User WHERE user_id = :id')
   Stream<User?> findUserById(int id);
 
   @Insert(onConflict: OnConflictStrategy.replace)

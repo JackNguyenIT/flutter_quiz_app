@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiz_app/generated/assets.dart';
 import 'package:quiz_app/resource/theme/colors.dart';
 
 class HeaderBack extends StatelessWidget {
@@ -22,7 +23,7 @@ class HeaderBack extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-                icon: SvgPicture.asset("assets/icons/ic_back.svg",
+                icon: SvgPicture.asset(Assets.iconsIcBack,
                     width: 24,
                     height: 24,
                     colorFilter: const ColorFilter.mode(

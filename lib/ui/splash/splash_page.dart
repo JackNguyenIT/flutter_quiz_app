@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/generated/assets.dart';
 import 'package:quiz_app/router/route_page.dart';
 
 import '../../di/injection.dart';
@@ -41,7 +42,7 @@ class _SplashViewState extends State<SplashView> {
       },
       child: Scaffold(
         body: Image.asset(
-          "assets/images/bg_splash.png",
+          Assets.imagesBgSplash,
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,

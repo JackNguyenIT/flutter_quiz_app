@@ -128,7 +128,7 @@ class _$UserDao extends UserDao {
 
   @override
   Stream<User?> findUserById(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM User WHERE id = ?1',
+    return _queryAdapter.queryStream('SELECT * FROM User WHERE user_id = ?1',
         mapper: (Map<String, Object?> row) =>
             User(id: row['user_id'] as int, name: row['user_name'] as String),
         arguments: [id],
