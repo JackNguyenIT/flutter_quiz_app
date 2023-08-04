@@ -36,9 +36,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
         child: Column(
           children: [
             HeaderBack(
-                title: AppTranslations
-                    .of(context)
-                    .edit_profile,
+                title: AppTranslations.of(context).edit_profile,
                 actionText: null),
             Expanded(
               child: SingleChildScrollView(

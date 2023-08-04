@@ -15,7 +15,8 @@ abstract class CubitModule {
         return LocalizationCubit();
       })
       ..registerFactory<SplashCubit>(() {
-        return SplashCubit(sharedPreferences: getIt());
+        return SplashCubit(
+            sharedPreferences: getIt(), categoryRepository: getIt());
       })
       ..registerFactory<ProfileEditCubit>(() {
         return ProfileEditCubit();

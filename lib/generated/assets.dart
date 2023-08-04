@@ -8,5 +8,5 @@ class Assets {
   static const String imagesBg = 'assets/images/bg.svg';
   static const String imagesBgSplash = 'assets/images/bg_splash.png';
   static const String imagesIcLauncherBackground = 'assets/images/ic_launcher_background.png';
-
+  static const String jsonCategory = 'assets/json/category.json';
 }
