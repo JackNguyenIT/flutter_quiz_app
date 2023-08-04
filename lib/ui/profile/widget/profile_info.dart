@@ -14,13 +14,13 @@ class ProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280,
+      height: 300,
       child: Stack(
         children: <Widget>[
           ClipPath(
             clipper: CustomShape(),
             child: Container(
-              height: 230,
+              height: 250,
               decoration:
                   const BoxDecoration(gradient: QAColors.backgroundTopProfile),
             ),

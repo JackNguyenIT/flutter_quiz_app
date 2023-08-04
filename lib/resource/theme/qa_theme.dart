@@ -74,6 +74,13 @@ class QATheme {
           ),
           backgroundColor: QAColors.black,
         ),
+        listTileTheme: const ListTileThemeData(
+          contentPadding: EdgeInsets.zero,
+          minVerticalPadding: 0.0,
+          dense: true,
+          horizontalTitleGap: 0.0,
+          minLeadingWidth: 0,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           isDense: true,
           contentPadding: EdgeInsets.all(12),
@@ -118,6 +125,13 @@ class QATheme {
         indicator: const UnderlineTabIndicator(
           borderSide: BorderSide(width: 1, color: QAColors.white),
         ),
+      ),
+      listTileTheme: const ListTileThemeData(
+        contentPadding: EdgeInsets.zero,
+        minVerticalPadding: 0.0,
+        dense: true,
+        horizontalTitleGap: 0.0,
+        minLeadingWidth: 0,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: QAColors.white,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/resource/theme/colors.dart';
+import 'package:quiz_app/resource/localization/l10n.dart';
+import 'package:quiz_app/ui/question/widget/question_item.dart';
+import 'package:quiz_app/ui/widget/header_title.dart';
 
 class QuestionPage extends StatelessWidget {
   const QuestionPage({Key? key}) : super(key: key);
@@ -26,16 +28,23 @@ class _QuestionViewState extends State<QuestionView>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Question",
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontSize: 14, color: QAColors.white),
-          )
+          HeaderTitle(title: AppTranslations.of(context).question),
+          Expanded(child: _buildList()),
         ],
       ),
     );
+  }
+
+  _buildList() {
+    return ListView.separated(
+        padding: const EdgeInsets.only(bottom: 12.0),
+        itemBuilder: (context, index) {
+          return const QuestionItem();
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 10);
+        },
+        itemCount: 20);
   }
 
   @override
