@@ -20,6 +20,7 @@ class QAColors {
 
   static const primary = Color(0xFF52B3D0);
   static const primaryDark = Color(0xCC1E1E1E);
+  static const primaryDark_50 = Color(0x801E1E1E);
 
   static const line = Color(0xFFEFEEEF);
   static const imagePlaceHolder = Color(0xFFD9D9D9);
@@ -28,6 +29,12 @@ class QAColors {
 
   static const kPrimaryGradient = LinearGradient(
     colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static const backgroundTopProfile = LinearGradient(
+    colors: [primaryDark_50, primaryDark],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );

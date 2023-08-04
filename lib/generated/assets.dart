@@ -4,6 +4,7 @@ class Assets {
 
   static const String iconsIcBack = 'assets/icons/ic_back.svg';
   static const String iconsIcClock = 'assets/icons/ic_clock.svg';
+  static const String imagesAvatar = 'assets/images/avatar.jpg';
   static const String imagesBg = 'assets/images/bg.svg';
   static const String imagesBgSplash = 'assets/images/bg_splash.png';
   static const String imagesIcLauncherBackground = 'assets/images/ic_launcher_background.png';

@@ -6,5 +6,9 @@
   "home": "Home",
   "question": "Question",
   "history": "History",
-  "profile": "Profile"
+  "profile": "Profile",
+  "quiz_top": "Quiz Top",
+  "quiz_challenge": "Quiz Challenge",
+  "quiz_history": "Quiz History",
+  "help" : "Help"
 }

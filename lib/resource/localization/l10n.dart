@@ -119,6 +119,46 @@ class AppTranslations {
       args: [],
     );
   }
+
+  /// `Quiz Top`
+  String get quiz_top {
+    return Intl.message(
+      'Quiz Top',
+      name: 'quiz_top',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quiz Challenge`
+  String get quiz_challenge {
+    return Intl.message(
+      'Quiz Challenge',
+      name: 'quiz_challenge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quiz History`
+  String get quiz_history {
+    return Intl.message(
+      'Quiz History',
+      name: 'quiz_history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message(
+      'Help',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppTranslations> {
