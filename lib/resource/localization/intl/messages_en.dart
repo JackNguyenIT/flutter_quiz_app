@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Quiz Challenge"),
         "quiz_history": MessageLookupByLibrary.simpleMessage("Quiz History"),
         "quiz_top": MessageLookupByLibrary.simpleMessage("Quiz Top"),
-        "skip": MessageLookupByLibrary.simpleMessage("Skip")
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "somethingWentWrongMessage":
+            MessageLookupByLibrary.simpleMessage("Oops something went wrong")
       };
 }

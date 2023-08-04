@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/data/question/question.dart';
+import 'package:quiz_app/di/injection.dart';
 import 'package:quiz_app/resource/localization/l10n.dart';
+import 'package:quiz_app/ui/question/bloc/question_cubit.dart';
 import 'package:quiz_app/ui/question/widget/question_item.dart';
 import 'package:quiz_app/ui/widget/header_title.dart';
 
@@ -8,7 +12,10 @@ class QuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const QuestionView();
+    return BlocProvider<QuestionCubit>(
+      create: (context) => getIt.get<QuestionCubit>(),
+      child: const QuestionView(),
+    );
   }
 }
 
@@ -29,22 +36,40 @@ class _QuestionViewState extends State<QuestionView>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           HeaderTitle(title: AppTranslations.of(context).question),
-          Expanded(child: _buildList()),
+          Expanded(child: _buildListAsStream()),
         ],
       ),
     );
   }
 
-  _buildList() {
-    return ListView.separated(
-        padding: const EdgeInsets.only(bottom: 12.0),
-        itemBuilder: (context, index) {
-          return const QuestionItem();
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 10);
-        },
-        itemCount: 20);
+  // _buildList() {
+  //   return ListView.separated(
+  //       padding: const EdgeInsets.only(bottom: 12.0),
+  //       itemBuilder: (context, index) {
+  //         return const QuestionItem();
+  //       },
+  //       separatorBuilder: (context, index) {
+  //         return const SizedBox(height: 10);
+  //       },
+  //       itemCount: 20);
+  // }
+
+  _buildListAsStream() {
+    return StreamBuilder<List<Question>>(
+        stream: context.read<QuestionCubit>().questionAsStream,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const SizedBox.shrink();
+          final questions = snapshot.requireData;
+          return ListView.separated(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              itemBuilder: (context, index) {
+                return QuestionItem(question: questions[index]);
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 10);
+              },
+              itemCount: questions.length);
+        });
   }
 
   @override

@@ -8,8 +8,10 @@ import '../injection.dart';
 abstract class RepositoryModule {
   static Future<void> initModule() async {
     getIt
-      ..registerLazySingleton<QuestionRepository>(
-          () => QuestionRepositoryImpl(sharedPreferences: getIt()))
+      ..registerLazySingleton<QuestionRepository>(() => QuestionRepositoryImpl(
+          sharedPreferences: getIt(),
+          apiService: getIt(),
+          questionDao: getIt()))
       ..registerLazySingleton<CategoryRepository>(
           () => CategoryRepositoryImpl(sharedPreferences: getIt()));
   }

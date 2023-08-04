@@ -14,5 +14,6 @@
   "edit_profile": "Edit Profile",
   "email_invalid": "This field has an invalid email format",
   "email_address": "Email address",
-  "name": "Name"
+  "name": "Name",
+  "somethingWentWrongMessage": "Oops something went wrong"
 }

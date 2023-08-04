@@ -85,7 +85,7 @@ class _$QuestionDatabase extends QuestionDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Question` (`id` TEXT NOT NULL, `name` TEXT, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Question` (`question_id` TEXT NOT NULL, `question_category` TEXT, `question_incorrect_answers` TEXT, `question_correct_answer` TEXT, `question_type` TEXT, `question_difficulty` TEXT, `question_question_text` TEXT, PRIMARY KEY (`question_id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -107,8 +107,17 @@ class _$QuestionDao extends QuestionDao {
         _questionInsertionAdapter = InsertionAdapter(
             database,
             'Question',
-            (Question item) =>
-                <String, Object?>{'id': item.id, 'name': item.name},
+            (Question item) => <String, Object?>{
+                  'question_id': item.id,
+                  'question_category': item.category,
+                  'question_incorrect_answers':
+                      _stringListConverter.encode(item.incorrectAnswers),
+                  'question_correct_answer': item.correctAnswer,
+                  'question_type': item.type,
+                  'question_difficulty': item.difficulty,
+                  'question_question_text':
+                      _questionTextConverter.encode(item.question)
+                },
             changeListener);
 
   final sqflite.DatabaseExecutor database;
@@ -122,15 +131,48 @@ class _$QuestionDao extends QuestionDao {
   @override
   Future<List<Question>> getQuestions() async {
     return _queryAdapter.queryList('SELECT * FROM Question',
-        mapper: (Map<String, Object?> row) =>
-            Question(id: row['id'] as String, name: row['name'] as String?));
+        mapper: (Map<String, Object?> row) => Question(
+            id: row['question_id'] as String,
+            question: _questionTextConverter
+                .decode(row['question_question_text'] as String?),
+            category: row['question_category'] as String?,
+            incorrectAnswers: _stringListConverter
+                .decode(row['question_incorrect_answers'] as String?),
+            correctAnswer: row['question_correct_answer'] as String?,
+            type: row['question_type'] as String?,
+            difficulty: row['question_difficulty'] as String?));
+  }
+
+  @override
+  Stream<List<Question>> getStreamQuestionsAsStream() {
+    return _queryAdapter.queryListStream('SELECT * FROM Question',
+        mapper: (Map<String, Object?> row) => Question(
+            id: row['question_id'] as String,
+            question: _questionTextConverter
+                .decode(row['question_question_text'] as String?),
+            category: row['question_category'] as String?,
+            incorrectAnswers: _stringListConverter
+                .decode(row['question_incorrect_answers'] as String?),
+            correctAnswer: row['question_correct_answer'] as String?,
+            type: row['question_type'] as String?,
+            difficulty: row['question_difficulty'] as String?),
+        queryableName: 'Question',
+        isView: false);
   }
 
   @override
   Stream<Question?> findQuestionById(int id) {
     return _queryAdapter.queryStream('SELECT * FROM Question WHERE id = ?1',
-        mapper: (Map<String, Object?> row) =>
-            Question(id: row['id'] as String, name: row['name'] as String?),
+        mapper: (Map<String, Object?> row) => Question(
+            id: row['question_id'] as String,
+            question: _questionTextConverter
+                .decode(row['question_question_text'] as String?),
+            category: row['question_category'] as String?,
+            incorrectAnswers: _stringListConverter
+                .decode(row['question_incorrect_answers'] as String?),
+            correctAnswer: row['question_correct_answer'] as String?,
+            type: row['question_type'] as String?,
+            difficulty: row['question_difficulty'] as String?),
         arguments: [id],
         queryableName: 'Question',
         isView: false);
@@ -141,4 +183,14 @@ class _$QuestionDao extends QuestionDao {
     await _questionInsertionAdapter.insert(
         question, OnConflictStrategy.replace);
   }
+
+  @override
+  Future<void> insertQuestions(List<Question> questions) async {
+    await _questionInsertionAdapter.insertList(
+        questions, OnConflictStrategy.replace);
+  }
 }
+
+// ignore_for_file: unused_element
+final _stringListConverter = StringListConverter();
+final _questionTextConverter = QuestionTextConverter();
