@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiz_app/generated/assets.dart';
 import 'package:quiz_app/resource/localization/l10n.dart';
 import 'package:quiz_app/resource/theme/colors.dart';
 import 'package:quiz_app/router/route_page.dart';
+import 'package:quiz_app/ui/bloc/app/app_cubit.dart';
 import 'package:quiz_app/ui/history/history_page.dart';
 import 'package:quiz_app/ui/home/home_page.dart';
 import 'package:quiz_app/ui/profile/profile_page.dart';
@@ -16,6 +18,11 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MainView();
   }
+
+  static const int tabHome = 0;
+  static const int tabQuestion = 1;
+  static const int tabHistory = 2;
+  static const int tabProfile = 3;
 }
 
 class MainView extends StatefulWidget {
@@ -26,8 +33,6 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int _selectedIndex = 0;
-
   final PageController _pageController = PageController();
 
   static final List<Widget> _widgetOptions = <Widget>[
@@ -39,29 +44,42 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-          return true;
-        },
-        child: Scaffold(
-            extendBody: true,
-            floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(QUIZ_PATH);
-                },
-                child: const Icon(Icons.play_arrow_rounded)),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            body: Stack(children: [
-              SvgPicture.asset(
-                Assets.imagesBg,
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              _buildBody()
-            ]),
-            bottomNavigationBar: _buildBottomAppBar()));
+    return BlocConsumer<AppCubit, AppState>(
+      listener: (context, state) {
+        _pageController.jumpToPage(state.currentTab);
+      },
+      builder: (context, state) {
+        return WillPopScope(
+            onWillPop: () async {
+              return true;
+            },
+            child: Scaffold(
+                extendBody: true,
+                floatingActionButton: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(QUIZ_PATH);
+                    },
+                    child: const Icon(Icons.play_arrow_rounded)),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
+                body: Stack(children: [
+                  SvgPicture.asset(
+                    Assets.imagesBg,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                  _buildBody()
+                ]),
+                bottomNavigationBar: _buildBottomAppBar()));
+      },
+      buildWhen: (old, state) {
+        return old.currentTab != state.currentTab;
+      },
+      listenWhen: (old, state) {
+        return old.currentTab != state.currentTab;
+      },
+    );
   }
 
   _buildBody() {
@@ -141,9 +159,6 @@ class _MainViewState extends State<MainView> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      _pageController.jumpToPage(index);
-    });
+    context.read<AppCubit>().setCurrentTab(index);
   }
 }

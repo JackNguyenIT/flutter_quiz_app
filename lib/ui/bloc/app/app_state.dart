@@ -2,5 +2,7 @@ part of 'app_cubit.dart';
 
 @freezed
 class AppState with _$AppState {
-  const factory AppState.initial() = Initial;
+  const factory AppState({
+    @Default(MainPage.tabHome) int currentTab,
+  }) = _AppState;
 }
