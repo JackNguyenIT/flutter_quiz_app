@@ -2,4 +2,5 @@
 
 const String SPLASH_PATH = "/splash_path";
 const String MAIN_TAB_BAR_PATH = "/main_tab_bar_path";
-const String QUIZ_PATH = "quiz_path";
+const String QUIZ_PATH = "/quiz_path";
+const String PROFILE_EDIT_PATH = "/profile_edit_path";

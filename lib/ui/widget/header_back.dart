@@ -7,9 +7,11 @@ class HeaderBack extends StatelessWidget {
   const HeaderBack(
       {super.key,
       required this.actionText,
+      this.title,
       this.onBackPress,
       this.onActionPress});
 
+  final String? title;
   final String? actionText;
   final VoidCallback? onBackPress;
   final VoidCallback? onActionPress;
@@ -22,19 +24,32 @@ class HeaderBack extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-                icon: SvgPicture.asset(Assets.iconsIcBack,
-                    width: 24,
-                    height: 24,
-                    colorFilter: const ColorFilter.mode(
-                        QAColors.white, BlendMode.srcIn)),
-                onPressed: () {
-                  if (onBackPress == null) {
-                    Navigator.pop(context);
-                  } else {
-                    onBackPress?.call();
-                  }
-                }),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                    icon: SvgPicture.asset(Assets.iconsIcBack,
+                        width: 24,
+                        height: 24,
+                        colorFilter: const ColorFilter.mode(
+                            QAColors.white, BlendMode.srcIn)),
+                    onPressed: () {
+                      if (onBackPress == null) {
+                        Navigator.pop(context);
+                      } else {
+                        onBackPress?.call();
+                      }
+                    }),
+                if (title != null) ...[
+                  const SizedBox(width: 10),
+                  Text(title!,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ))
+                ]
+              ],
+            ),
             if (actionText != null) ...[
               TextButton(
                   onPressed: () {

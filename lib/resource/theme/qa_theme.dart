@@ -85,7 +85,7 @@ class QATheme {
           isDense: true,
           contentPadding: EdgeInsets.all(12),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: QAColors.black_10, width: 1),
+              borderSide: BorderSide(color: QAColors.white, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(12))),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: QAColors.primary, width: 1),
@@ -94,7 +94,7 @@ class QATheme {
               borderSide: BorderSide(color: QAColors.red, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(12))),
           border: OutlineInputBorder(
-              borderSide: BorderSide(color: QAColors.black_10, width: 1),
+              borderSide: BorderSide(color: QAColors.white, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(12))),
         ));
   }

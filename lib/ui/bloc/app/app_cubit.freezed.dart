@@ -90,7 +90,7 @@ class __$$_AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppState implements _AppState {
-  const _$_AppState({this.currentTab = 0});
+  const _$_AppState({this.currentTab = MainPage.tabHome});
 
   @override
   @JsonKey()

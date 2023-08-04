@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/router/route_page.dart';
 import 'package:quiz_app/ui/main/main_page.dart';
+import 'package:quiz_app/ui/profile/edit/profile_edit_page.dart';
 import 'package:quiz_app/ui/quiz/quiz_page.dart';
 import 'package:quiz_app/ui/splash/splash_page.dart';
 
@@ -24,6 +25,11 @@ class AppRouter {
       case QUIZ_PATH:
         return MaterialPageRoute(
           builder: (_) => const QuizPage(),
+          settings: settings,
+        );
+      case PROFILE_EDIT_PATH:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileEditPage(),
           settings: settings,
         );
       default:

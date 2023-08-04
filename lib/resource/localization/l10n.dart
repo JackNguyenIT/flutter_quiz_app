@@ -159,6 +159,46 @@ class AppTranslations {
       args: [],
     );
   }
+
+  /// `Edit Profile`
+  String get edit_profile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'edit_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field has an invalid email format`
+  String get email_invalid {
+    return Intl.message(
+      'This field has an invalid email format',
+      name: 'email_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address`
+  String get email_address {
+    return Intl.message(
+      'Email address',
+      name: 'email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppTranslations> {

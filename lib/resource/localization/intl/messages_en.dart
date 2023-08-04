@@ -22,11 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "email_address": MessageLookupByLibrary.simpleMessage("Email address"),
+        "email_invalid": MessageLookupByLibrary.simpleMessage(
+            "This field has an invalid email format"),
         "error_title": MessageLookupByLibrary.simpleMessage("Error"),
         "help": MessageLookupByLibrary.simpleMessage("Help"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "question": MessageLookupByLibrary.simpleMessage("Question"),
         "quiz_challenge":

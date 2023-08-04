@@ -10,5 +10,9 @@
   "quiz_top": "Quiz Top",
   "quiz_challenge": "Quiz Challenge",
   "quiz_history": "Quiz History",
-  "help" : "Help"
+  "help" : "Help",
+  "edit_profile": "Edit Profile",
+  "email_invalid": "This field has an invalid email format",
+  "email_address": "Email address",
+  "name": "Name"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/resource/theme/colors.dart';
+import 'package:quiz_app/router/route_page.dart';
 
 class ProfileInfo extends StatelessWidget {
   const ProfileInfo({
@@ -29,22 +30,7 @@ class ProfileInfo extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 4,
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(image),
-                    ),
-                  ),
-                ),
+                _buildAvatar(context),
                 Text(name,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontSize: 22.0,
@@ -60,6 +46,50 @@ class ProfileInfo extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  _buildAvatar(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(PROFILE_EDIT_PATH);
+      },
+      child: Stack(children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 10.0),
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 4,
+            ),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(image),
+            ),
+          ),
+        ),
+        Positioned(
+            bottom: 10,
+            right: 0,
+            child: Container(
+              height: 24,
+              width: 24,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: QAColors.white,
+                    width: 1,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+              child: const Icon(
+                Icons.edit,
+                size: 16.0,
+                color: QAColors.white,
+              ),
+            ))
+      ]),
     );
   }
 }
