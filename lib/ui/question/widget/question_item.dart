@@ -81,12 +81,15 @@ class _QuestionItemState extends State<QuestionItem> {
           padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Text(content,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontSize: 16.0,
-                        color: Colors.black,
-                      )),
+              Expanded(
+                child: Text(content,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                        )),
+              ),
               AppCheckBox(isChecked: isCorrect)
             ],
           ),

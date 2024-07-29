@@ -42,18 +42,6 @@ class _QuestionViewState extends State<QuestionView>
     );
   }
 
-  // _buildList() {
-  //   return ListView.separated(
-  //       padding: const EdgeInsets.only(bottom: 12.0),
-  //       itemBuilder: (context, index) {
-  //         return const QuestionItem();
-  //       },
-  //       separatorBuilder: (context, index) {
-  //         return const SizedBox(height: 10);
-  //       },
-  //       itemCount: 20);
-  // }
-
   _buildListAsStream() {
     return StreamBuilder<List<Question>>(
         stream: context.read<QuestionCubit>().questionAsStream,

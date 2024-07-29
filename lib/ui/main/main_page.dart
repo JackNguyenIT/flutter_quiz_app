@@ -149,7 +149,7 @@ class _MainViewState extends State<MainView> {
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
-                    ?.copyWith(fontSize: 14, color: QAColors.white),
+                    ?.copyWith(fontSize: 10, color: QAColors.white),
               )
             ],
           ),
