@@ -18,6 +18,10 @@ class QAMaterialApp extends StatelessWidget {
       title: 'Quiz App',
       locale: locale,
       debugShowCheckedModeBanner: false,
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('vi', 'VN'),
+      ],
       builder: (context, child) {
         // Obtain the current media query information.
         final mediaQueryData = MediaQuery.of(context);
@@ -33,5 +37,6 @@ class QAMaterialApp extends StatelessWidget {
       theme: QATheme.light(),
       onGenerateRoute: AppRouter.generateRoute,
     );
+
   }
 }
